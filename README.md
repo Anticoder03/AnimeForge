@@ -1,5 +1,4 @@
 
-```markdown
 # AnimeForge 🎌🔥
 
 Welcome to **AnimeForge** – a sleek, responsive, anime-centered web app built for otakus, by an otaku. This app fetches data from the [Jikan API](https://jikan.moe/) (MyAnimeList Unofficial API) and beautifully displays top anime series and movies with complete dark/light theme support, search features, and dynamic pages.
