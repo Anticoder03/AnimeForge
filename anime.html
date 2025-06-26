@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anime Details</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+
+
+<!-- Navbar -->
+<nav class="bg-white dark:bg-gray-800 dark:text-white shadow-md px-6 py-4 sticky top-0 z-50">
+  <div class="flex justify-between items-center">
+    <!-- Logo & Brand -->
+    <div class="flex items-center space-x-4">
+      <h1 class="text-2xl font-bold text-indigo-600">AnimeForge</h1>
+    </div>
+
+    <!-- Hamburger (mobile) -->
+    <div class="md:hidden">
+      <button id="menu-toggle" class="text-2xl focus:outline-none">&#9776;</button>
+    </div>
+
+    <!-- Desktop Nav & Search -->
+    <div class="hidden md:flex items-center space-x-6">
+      <a href="index.html" class="hover:text-indigo-600 transition">Home</a>
+      <a href="about.html" class="hover:text-indigo-600 transition">About</a>
+      <a href="movies.html" class="hover:text-indigo-600 transition">Movies</a>
+      <input type="search" placeholder="Search anime..." class="border px-3 py-1 rounded focus:outline-none focus:ring focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+      <label class="inline-flex items-center cursor-pointer">
+  
+</label>
+
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden mt-4 hidden flex-col space-y-3">
+    <a href="index.html" class="block hover:text-indigo-600 transition">Home</a>
+    <a href="about.html" class="block hover:text-indigo-600 transition">About</a>
+    <a href="movies.html" class="block hover:text-indigo-600 transition">Movies</a>
+    <input type="search" placeholder="Search anime..." class="w-full border px-3 py-1 rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+    <label class="inline-flex items-center cursor-pointer">
+  
+</label>
+
+  </div>
+</nav>
+
+
+  <div class="max-w-5xl mx-auto p-6">
+    <a href="index.html" class="text-indigo-500 hover:underline mb-4 inline-block">← Back to List</a>
+    <div id="anime-details" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+      <!-- Content will be injected here -->
+    </div>
+  </div>
+
+  </body>
+<script src="./theme_change.js"></script>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const animeId = urlParams.get('id');
+
+    if (animeId) {
+      fetch(`https://api.jikan.moe/v4/anime/${animeId}`)
+        .then(res => res.json())
+        .then(data => {
+          const anime = data.data;
+          const genres = anime.genres.map(g => g.name).join(', ');
+          const studios = anime.studios.map(s => s.name).join(', ');
+          const totalTime = anime.episodes && anime.duration 
+              ? `${anime.episodes} × ${anime.duration}` 
+              : 'Unknown';
+
+          const detailsDiv = document.getElementById('anime-details');
+          detailsDiv.innerHTML = `
+            <img src="${anime.images.jpg.large_image_url}" alt="${anime.title}" class="w-full h-96 object-contain mt-4">
+            <div class="p-6 space-y-4">
+              <h1 class="text-3xl font-bold text-indigo-600">${anime.title_english || anime.title}</h1>
+              <p><strong>Episodes:</strong> ${anime.episodes || 'Unknown'}</p>
+              <p><strong>Status:</strong> ${anime.status}</p>
+              <p><strong>Aired:</strong> ${anime.aired.from ? anime.aired.from.split('T')[0] : 'N/A'} → ${anime.aired.to ? anime.aired.to.split('T')[0] : 'N/A'}</p>
+              <p><strong>Genres:</strong> ${genres}</p>
+              <p><strong>Studios:</strong> ${studios}</p>
+              <p><strong>Rating:</strong> ${anime.rating}</p>
+              <p><strong>Score:</strong> ⭐ ${anime.score}</p>
+              <p><strong>Total Watch Time:</strong> ${totalTime}</p>
+              <p class="pt-4"><strong>Synopsis:</strong> ${anime.synopsis}</p>
+              <a href="${anime.url}" target="_blank" class="text-blue-500 underline">View on MyAnimeList</a>
+            </div>
+          `;
+        })
+        .catch(err => console.error('Error fetching details:', err));
+    } else {
+      document.getElementById('anime-details').innerHTML = '<p class="p-6">No anime selected.</p>';
+    }
+  </script>
+
+</html>
