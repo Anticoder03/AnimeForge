@@ -28,12 +28,12 @@ Welcome to **AnimeForge** – a sleek, responsive, anime-centered web app built 
 ## 📸 Preview
 
 ## 🖼️ Screenshots
-![Home Page 1](screenshorst/home-1.png)
-![Home Page 2](screenshorst/home-2.png)
-![About Page](screenshorst/about.png)
-![Anime View 1](screenshorst/anime-1.png)
-![Anime View 2](screenshorst/anime-2.png)
-![Anime View 3](screenshorst/anime-3.png)
+![Home Page 1](screenshort/home-1.png)
+![Home Page 2](screenshort/home-2.png)
+![About Page](screenshort/about.png)
+![Anime View 1](screenshort/anime-1.png)
+![Anime View 2](screenshort/anime-2.png)
+![Anime View 3](screenshort/anime-3.png)
 
 
 ---
