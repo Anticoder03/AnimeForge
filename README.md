@@ -71,7 +71,7 @@ _Or host it yourself! Just open `index.html` in your browser._
 ## 🙋‍♂️ About Me
 
 I’m **Ashish Prajapati**, a full-blooded coder + anime fan (call me a Coding Senpai). I built this project to combine my two loves — tech & anime.
-
+> _Built with 💻 & ❤️ by  Anticoder03_
 - 📸 [Instagram](https://www.instagram.com/ashiah03_prajapati/)
 - 💻 [GitHub](https://github.com/Anticoder03)
 
