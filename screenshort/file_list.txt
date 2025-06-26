@@ -1,0 +1,8 @@
+about.png
+anime-1.png
+anime-2.png
+anime-3.png
+file_list.txt
+files.sh
+home-1.png
+home-2.png
